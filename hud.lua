@@ -17,20 +17,18 @@ SlashCmdList["hkhudCCCOMMAND"] = function(msg)
 		--print help messages
 		DEFAULT_CHAT_FRAME:AddMessage("hkhud Commands:");
 		DEFAULT_CHAT_FRAME:AddMessage("/hkhud toggle");
-		DEFAULT_CHAT_FRAME:AddMessage("/hkhud lock");
-	else
-		DEFAULT_CHAT_FRAME:AddMessage("msg else block");
+		DEFAULT_CHAT_FRAME:AddMessage("/hkhud toggle");
 		
 		--/omnicc size <size>
 		if(msg == "toggle") then
-			DEFAULT_CHAT_FRAME:AddMessage("attempting to toggle hks");
+			--DEFAULT_CHAT_FRAME:AddMessage("attempting to toggle hks");
 			toggle_hks()
 		elseif(msg == "lock") then
-			DEFAULT_CHAT_FRAME:AddMessage("attempting to lock");
+			--DEFAULT_CHAT_FRAME:AddMessage("attempting to lock");
 			hkFrame:SetMovable(false)
 			hkFrame:EnableMouse(false)
 		elseif(msg == "unlock") then
-			DEFAULT_CHAT_FRAME:AddMessage("attempting to lock");
+			--DEFAULT_CHAT_FRAME:AddMessage("attempting to lock");
 			hkFrame:SetMovable(true)
 			hkFrame:EnableMouse(true)
 		end
@@ -49,7 +47,7 @@ end
 hkHUD_CORE:SetScript('OnEvent', function() 
 	if event == "PLAYER_ENTERING_WORLD" then
 		MakeHKFrame()
-		hkHUD_Ragebar_VarUpdate()
+		hkHUD_VarUpdate()
 	elseif "CHAT_MSG_COMBAT_HONOR_GAIN" then
 		hkCount_Update()
 	end
@@ -130,7 +128,7 @@ function MakeHKFrame()
 		staticWording_TEXT:SetTextColor(1,0,0)
 end
 
-function hkHUD_Ragebar_VarUpdate()	
+function hkHUD_VarUpdate()	
 		hkHUD_RegisterEvent("CHAT_MSG_COMBAT_HONOR_GAIN")
 		hkFrame:SetPoint("CENTER", UIParent, 0 ,-100)
 end
@@ -139,6 +137,3 @@ function hkCount_Update()
 	hkCount = hkCount+1	
 	hkCount_TEXT:SetText(hkCount)
 end
-
-------------
-DEFAULT_CHAT_FRAME:AddMessage("BOTTOM OF HKHUD", 1.0, 0.0, 1.0)
